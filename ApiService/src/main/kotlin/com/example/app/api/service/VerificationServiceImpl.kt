@@ -1,6 +1,7 @@
 package com.example.app.api.service
 
 import com.example.app.api.data.ApproverServiceClient
+import com.example.app.api.data.IdGeneratorServiceClient
 import com.example.app.api.data.VerificationEntity
 import com.example.app.api.data.VerificationRepository
 import org.example.app.api.dto.VerificationDto
@@ -12,9 +13,10 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class VerificationServiceImpl(
-        @Autowired val repository: VerificationRepository,
-        @Autowired val approver: ApproverServiceClient
+class VerificationServiceImpl @Autowired constructor(
+        private val repository: VerificationRepository,
+        private val approver: ApproverServiceClient,
+        private val idGenerator: IdGeneratorServiceClient
 ): VerificationService {
 
     private val mapper = ModelMapper().apply {
@@ -40,7 +42,7 @@ class VerificationServiceImpl(
     }
 
     private fun sendToApprover(dto: VerificationDto): VerificationDto{
-        dto.verificationId = UUID.randomUUID().toString()
+        dto.verificationId = idGenerator.createId()
         approver.createVerification(dto)
         return dto
     }
