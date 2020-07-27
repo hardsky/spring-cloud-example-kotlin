@@ -2,50 +2,34 @@ version: "3.8"
 services:
   api-service:
     build: ./ApiService
-    networks:
-      - lan
     depends_on:
       - zuul
       - id-gen-service
       - approver-service
   approver-service:
     build: ./ApproverService
-    networks:
-      - lan
     depends_on:
       - zuul
       - mailer-service
   id-gen-service:
     build: ./IdGeneratorService
-    networks:
-      - lan
     depends_on:
       - zuul
   mailer-service:
     build: ./MailerService
-    networks:
-      - lan
     depends_on:
       - zuul
   zuul:
     build: ./ApiZuulGateway
-    networks:
-      - lan
     depends_on:
       - consul
       - rabbitmq
       - api-db
   api-db:
     image: "postgres:12-alpine"
-    networks:
-      - lan
   consul:
     image: "consul:1.8"
-    networks:
-      - lan
     ports:
       - 8500:8500
   rabbitmq:
     image: "rabbitmq:3.8-alpine"
-    networks:
-      - lan
