@@ -6,4 +6,5 @@ COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
 
-RUN chmod +x /workspace/app/mvnw && ./mvnw install -DskipTests
+RUN chmod +x /workspace/app/mvnw && \
+        ./mvnw install -DskipTests
