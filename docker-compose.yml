@@ -25,6 +25,10 @@ services:
       - consul
       - rabbitmq
       - api-db
+      - dto
+  dto:
+    build: ./ApiDto
+    image: myorg/dto
   api-db:
     image: "postgres:12-alpine"
   consul:
