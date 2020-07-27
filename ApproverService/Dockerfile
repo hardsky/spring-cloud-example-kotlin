@@ -22,4 +22,4 @@ ARG DEPENDENCY=/workspace/app/target/dependency
 COPY --from=app_build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=app_build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=app_build ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.example.app.approver.ApproverServiceApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.example.app.approver.ApproverServiceApplicationKt"]
