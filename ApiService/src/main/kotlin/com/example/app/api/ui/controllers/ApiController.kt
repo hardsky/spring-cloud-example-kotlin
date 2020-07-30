@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
-@RestController("/api")
+@RestController
 class ApiController(
     @Autowired val env: Environment,
     @Autowired val verificationService: VerificationService
@@ -34,4 +34,7 @@ class ApiController(
     fun checkVerification(@PathVariable("id") id:String): ResponseEntity<String> {
         return ResponseEntity.ok(verificationService.checkStatus(id).toString())
     }
+
+    @GetMapping("/test-test")
+    fun testTest(): String = "Working on port: ${env["test-val"]}"
 }

@@ -35,7 +35,7 @@ class VerificationEntity : Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 10)
-    var status: VerificationStatus = VerificationStatus.NONE
+    var verificationStatus: VerificationStatus = VerificationStatus.NONE
 
     companion object {
         private const val serialVersionUID = 7197111630123472067L

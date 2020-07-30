@@ -24,25 +24,26 @@ class VerificationServiceImpl @Autowired constructor(
     }
 
     override fun sendVerification(dto: VerificationDto): VerificationDto {
-        val sent = sendToApprover(dto)
-        return saveToDb(sent)
+        dto.verificationId = idGenerator.createId()
+        dto.verificationStatus = VerificationStatus.PENDING
+        val saved = saveToDb(dto)
+        return sendToApprover(saved)
     }
 
     override fun checkStatus(id: String): VerificationStatus {
         val entity = repository.findByVerificationId(id)
-        return entity?.status?: VerificationStatus.NONE
+        return entity?.verificationStatus?: VerificationStatus.NONE
     }
 
     override fun updateStatus(dto: VerificationDto) {
         val entity = repository.findByVerificationId(dto.verificationId)
         entity?.let {
-            entity.status = dto.verificationStatus
+            entity.verificationStatus = dto.verificationStatus
             repository.save(entity)
         }
     }
 
     private fun sendToApprover(dto: VerificationDto): VerificationDto{
-        dto.verificationId = idGenerator.createId()
         approver.createVerification(dto)
         return dto
     }
