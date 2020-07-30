@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
-@RestController("/ids")
+@RestController
 class IdController @Autowired constructor(private val env: Environment) {
     @GetMapping("/status/check")
     fun status(): String = "Working on port: ${env["local.server.port"]}"
 
-    @PostMapping
+    @PostMapping("/ids")
     fun createId(): ResponseEntity<String>{
         val id = UUID.randomUUID().toString()
         return ResponseEntity.ok(id)

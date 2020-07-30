@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  api-db:
+    image: "postgres"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: "testdb"
+    ports:
+      - 5437:5432
+  consul:
+    image: "consul:1.8"
+    ports:
+      - 8500:8500
+  rabbitmq:
+    image: "rabbitmq:3.8-alpine"
+    ports:
+      - 5672:5672
+  zipkin:
+    image: "openzipkin/zipkin"
+    ports:
+      - 9411:9411

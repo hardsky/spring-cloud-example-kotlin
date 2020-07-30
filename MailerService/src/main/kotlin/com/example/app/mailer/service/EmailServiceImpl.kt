@@ -11,7 +11,7 @@ class EmailServiceImpl : EmailService {
 
     override fun sendEmail(dto: VerificationDto) {
         logger.info("email with status ${dto.verificationStatus} is sent to address ${dto.email}")
-        TODO("Not yet implemented")
+        // TODO("Not yet implemented")
     }
 
 //	@Autowired
