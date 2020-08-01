@@ -27,8 +27,8 @@ services:
     volumes:
       - ./ApiService/logs/api-ws.log:/api-logs/api-ws.log
       - ./ApproverService/logs/approver-ws.log:/api-logs/approver-ws.log
-      - ./IdGneratorService/logs/id-ws.log:/api-logs/id-ws.log
-      - ./MailerService/logs/api-ws.log:/api-logs/mailer-ws.log
+      - ./IdGeneratorService/logs/id-ws.log:/api-logs/id-ws.log
+      - ./MailerService/logs/mailer-ws.log:/api-logs/mailer-ws.log
   elasticsearch:
     image: "docker.elastic.co/elasticsearch/elasticsearch:7.8.1"
     environment:
